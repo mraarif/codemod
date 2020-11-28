@@ -107,6 +107,7 @@ def line_transformation_suggestor(line_transformation, line_filter=None):
                                 a line is ignored (as if line_transformation
                                 returned the line itself for that line).
     """
+
     def suggestor(lines):
         for line_number, line in enumerate(lines):
             if line_filter and not line_filter(line):
@@ -116,6 +117,7 @@ def line_transformation_suggestor(line_transformation, line_filter=None):
                 yield Patch(line_number)
             else:
                 yield Patch(line_number, new_lines=[candidate])
+
     return suggestor
 
 
@@ -228,8 +230,8 @@ def print_patch(patch, lines_to_print, file_lines=None):
 
     def print_file_line(line_number):  # noqa
         # Why line_number is passed here?
-        print('  %s' % file_lines[i], end='') if (
-            0 <= i < len(file_lines)) else '~\n',
+        print('  %s' % file_lines[i], end='') if (0 <= i < len(file_lines))\
+            else '~\n',
 
     for i in range(start_context_line_number, patch.start_line_number):
         print_file_line(i)
@@ -427,8 +429,8 @@ def _parse_command_line():
                              'matching.')
     parser.add_argument('--include-extensionless', action='store_true',
                         help='If set, this will check files without '
-                        'an extension, along with any matching file '
-                        'extensions passed in --extensions')
+                             'an extension, along with any matching file '
+                             'extensions passed in --extensions')
     parser.add_argument('--exclude-paths', action='store', type=str,
                         help='A comma-delimited list of paths to exclude.')
 
@@ -442,8 +444,8 @@ def _parse_command_line():
 
     parser.add_argument('--editor', action='store', type=str,
                         help='Specify an editor, e.g. "vim" or emacs". '
-                        'If omitted, defaults to $EDITOR environment '
-                        'variable.')
+                             'If omitted, defaults to $EDITOR environment '
+                             'variable.')
     parser.add_argument('--count', action='store_true',
                         help='Don\'t run normally.  Instead, just print '
                              'out number of times places in the codebase '

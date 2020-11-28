@@ -14,10 +14,10 @@ import struct
 
 
 def _unicode(s, encoding='utf-8'):
-        if type(s) == bytes:
-            return s.decode(encoding, 'ignore')
-        else:
-            return str(s)
+    if type(s) == bytes:
+        return s.decode(encoding, 'ignore')
+    else:
+        return str(s)
 
 
 def terminal_get_size(default_size=(25, 80)):
@@ -100,13 +100,11 @@ def _terminal_set_color(color):
         if not set_code:
             return None
         return curses.tparm(set_code, color_index)
-    code = (
-        color_code(
-            'setaf', 'BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE'
-        ) or color_code(
-            'setf', 'BLACK BLUE GREEN CYAN RED MAGENTA YELLOW WHITE'
-        )
-    )
+
+    code = (color_code('setaf', 'BLACK RED GREEN YELLOW BLUE MAGENTA CYAN'
+                                ' WHITE') or
+            color_code('setf', 'BLACK BLUE GREEN CYAN RED MAGENTA YELLOW'
+                               ' WHITE'))
     if code:
         code = _unicode(code)
         sys.stdout.write(code)

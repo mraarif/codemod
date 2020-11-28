@@ -77,4 +77,5 @@ class Patch(object):
 
     def get_start_position(self):
         return Position(self.path, self.start_line_number)
+
     start_position = property(get_start_position)

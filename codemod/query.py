@@ -13,6 +13,7 @@ class Query(object):
     >>> Query(lambda x: None, start='profile.php:20').start_position
     Position('profile.php', 20)
     """
+
     def __init__(self,
                  suggestor,
                  start=None,
@@ -76,6 +77,7 @@ class Query(object):
 
     def get_start_position(self):
         return self._get_position('_start')
+
     start_position = property(get_start_position)
 
     @start_position.setter
@@ -84,6 +86,7 @@ class Query(object):
 
     def get_end_position(self):
         return self._get_position('_end')
+
     end_position = property(get_end_position)
 
     @end_position.setter
@@ -207,9 +210,5 @@ class Query(object):
         >>> Query._path_looks_like_code('/home/jrosenstein/www/.git/HEAD')
         False
         """
-        return (
-            '/.' not in path and
-            path[-1] != '~' and
-            not path.endswith('tags') and
-            not path.endswith('TAGS')
-        )
+        return ('/.' not in path and path[-1] != '~' and not
+                path.endswith('tags') and not path.endswith('TAGS'))
