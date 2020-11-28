@@ -89,4 +89,5 @@ def path_filter(extensions, exclude_paths=None):
                         fnmatch.fnmatch(path, excluded)):
                     return False
         return True
+
     return the_filter
